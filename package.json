@@ -1,0 +1,43 @@
+{
+  "name": "my-project-hub",
+  "version": "1.0.0",
+  "description": "Trung tâm quản lý các website và dự án cá nhân",
+  "main": "electron/main.cjs",
+  "author": "NguyenHop1909",
+  "license": "MIT",
+  "scripts": {
+    "dev": "npx serve . -l 4173",
+    "desktop": "electron .",
+    "dist": "electron-builder --win portable",
+    "dist:installer": "electron-builder --win nsis"
+  },
+  "devDependencies": {
+    "electron": "^38.2.1",
+    "electron-builder": "^26.0.12",
+    "serve": "^14.2.5"
+  },
+  "build": {
+    "appId": "com.nguyenhop.myprojecthub",
+    "productName": "My Project Hub",
+    "compression": "store",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "index.html",
+      "styles.css",
+      "app.js",
+      "electron/**/*",
+      "assets/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": ["portable"],
+      "signAndEditExecutable": false,
+      "artifactName": "My-Project-Hub-${version}.${ext}"
+    },
+    "portable": {
+      "artifactName": "My-Project-Hub-${version}.exe"
+    }
+  }
+}

@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0d1117" />
+    <meta name="description" content="My Project Hub — quản lý mọi website trong một nơi." />
+    <title>My Project Hub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+    <aside class="sidebar">
+      <a class="brand" href="#" aria-label="My Project Hub">
+        <span class="brand-mark">H</span><span><b>MY PROJECT</b><small>HUB</small></span>
+      </a>
+      <nav aria-label="Điều hướng chính">
+        <button class="nav-item active" data-view="all"><span class="nav-icon">⌂</span>Tổng quan</button>
+        <button class="nav-item" data-view="favorites"><span class="nav-icon">☆</span>Yêu thích</button>
+        <button class="nav-item" data-view="active"><span class="nav-icon">◉</span>Đang hoạt động</button>
+        <button class="nav-item" data-view="archived"><span class="nav-icon">▣</span>Lưu trữ</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <button class="nav-item" id="exportBtn"><span class="nav-icon">⇩</span>Xuất dữ liệu</button>
+        <label class="nav-item import-label"><span class="nav-icon">⇧</span>Nhập dữ liệu<input id="importInput" type="file" accept="application/json" hidden /></label>
+        <div class="profile"><span class="avatar">NH</span><span><b>Nguyễn Hợp</b><small>Workspace cá nhân</small></span></div>
+      </div>
+    </aside>
+
+    <main>
+      <header class="topbar">
+        <button class="mobile-menu" id="menuBtn" aria-label="Mở menu">☰</button>
+        <div class="search-wrap"><span>⌕</span><input id="searchInput" type="search" placeholder="Tìm dự án, công nghệ..." /><kbd>Ctrl K</kbd></div>
+        <button class="icon-btn" id="themeBtn" aria-label="Đổi giao diện">☼</button>
+        <button class="primary-btn" id="addBtn"><span>＋</span> Thêm website</button>
+      </header>
+
+      <div class="content">
+        <section class="hero">
+          <div><p class="eyebrow">WORKSPACE / <span id="dateLabel"></span></p><h1>Chào bạn, <em>Hợp.</em></h1><p>Quản lý và truy cập mọi sản phẩm số của bạn từ một nơi.</p></div>
+          <div class="hero-orbit" aria-hidden="true"><span></span><b>H</b></div>
+        </section>
+
+        <section class="stats" aria-label="Thống kê">
+          <article><span class="stat-icon purple">◫</span><div><small>TỔNG DỰ ÁN</small><strong id="totalCount">0</strong></div><i id="totalTrend">HUB</i></article>
+          <article><span class="stat-icon green">↗</span><div><small>ĐANG HOẠT ĐỘNG</small><strong id="activeCount">0</strong></div><i class="online">ONLINE</i></article>
+          <article><span class="stat-icon orange">◇</span><div><small>NHÓM DỰ ÁN</small><strong id="categoryCount">0</strong></div><i>ĐÃ PHÂN LOẠI</i></article>
+        </section>
+
+        <section class="projects-section">
+          <div class="section-head"><div><h2 id="viewTitle">Tất cả dự án</h2><p id="viewSubtitle">Các website trong workspace của bạn</p></div><div class="view-actions"><select id="categoryFilter" aria-label="Lọc theo danh mục"><option value="all">Tất cả danh mục</option></select><button class="icon-btn active" aria-label="Dạng lưới">▦</button></div></div>
+          <div class="project-grid" id="projectGrid"></div>
+          <div class="empty-state" id="emptyState" hidden><span>✦</span><h3>Chưa có website nào</h3><p>Thêm website đầu tiên để bắt đầu xây dựng workspace của bạn.</p><button class="primary-btn" id="emptyAddBtn">＋ Thêm website</button></div>
+        </section>
+      </div>
+    </main>
+
+    <div class="modal-backdrop" id="modal" hidden>
+      <form class="modal" id="projectForm">
+        <div class="modal-head"><div><p class="eyebrow">PROJECT DETAILS</p><h2 id="modalTitle">Thêm website mới</h2></div><button type="button" class="close-btn" id="closeModal">×</button></div>
+        <input type="hidden" id="projectId" />
+        <label>Tên website<input id="projectName" required maxlength="60" placeholder="Ví dụ: Portfolio cá nhân" /></label>
+        <label>Đường dẫn URL<input id="projectUrl" type="url" required placeholder="https://example.com" /></label>
+        <div class="form-row"><label>Danh mục<input id="projectCategory" required maxlength="30" placeholder="Cá nhân" /></label><label>Trạng thái<select id="projectStatus"><option value="active">Đang hoạt động</option><option value="building">Đang phát triển</option><option value="archived">Lưu trữ</option></select></label></div>
+        <label>Mô tả<textarea id="projectDescription" rows="3" maxlength="180" placeholder="Mô tả ngắn về dự án..."></textarea></label>
+        <label>Công nghệ <small>(phân cách bằng dấu phẩy)</small><input id="projectTech" placeholder="React, Node.js, Vercel" /></label>
+        <div class="color-picker"><span>Màu đại diện</span><div id="colorOptions"></div></div>
+        <div class="modal-actions"><button type="button" class="secondary-btn" id="cancelBtn">Hủy</button><button type="submit" class="primary-btn">Lưu website</button></div>
+      </form>
+    </div>
+    <div class="toast" id="toast" role="status"></div>
+    <script src="app.js"></script>
+  </body>
+</html>
