@@ -34,6 +34,13 @@ Ban desktop tu dong kiem tra GitHub Releases khi khoi dong. Khi ban moi da tai x
 ung dung se hoi nguoi dung co muon khoi dong lai de cap nhat hay khong. Moi release
 can kem file cai dat `.exe`, `latest.yml` va file `.blockmap` do electron-builder tao ra.
 
+## Uptime monitor
+
+- Tu dong kiem tra cac website moi 60 giay va co nut kiem tra ngay.
+- Hien thi Online/Failed, HTTP status, do tre va thoi diem kiem tra gan nhat.
+- Canh bao khi mot website dang online chuyen sang mat ket noi.
+- Ban desktop ping qua Electron nen doc duoc HTTP status chinh xac; ban web kiem tra kha nang ket noi va bi gioi han boi CORS cua trinh duyet.
+
 File `.exe` được tạo trong thư mục `release/`.
 
 ## Dữ liệu
