@@ -28,6 +28,12 @@ npm run desktop
 npm run dist
 ```
 
+## Cap nhat tu dong
+
+Ban desktop tu dong kiem tra GitHub Releases khi khoi dong. Khi ban moi da tai xong,
+ung dung se hoi nguoi dung co muon khoi dong lai de cap nhat hay khong. Moi release
+can kem file cai dat `.exe`, `latest.yml` va file `.blockmap` do electron-builder tao ra.
+
 File `.exe` được tạo trong thư mục `release/`.
 
 ## Dữ liệu

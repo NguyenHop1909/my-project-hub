@@ -1,6 +1,6 @@
 {
   "name": "my-project-hub",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Trung tâm quản lý các website và dự án cá nhân",
   "main": "electron/main.cjs",
   "author": "NguyenHop1909",
@@ -8,8 +8,11 @@
   "scripts": {
     "dev": "npx serve . -l 4173",
     "desktop": "electron .",
-    "dist": "electron-builder --win portable",
-    "dist:installer": "electron-builder --win nsis"
+    "dist": "electron-builder --win nsis --publish never",
+    "dist:portable": "electron-builder --win portable --publish never"
+  },
+  "dependencies": {
+    "electron-updater": "^6.6.2"
   },
   "devDependencies": {
     "electron": "^38.2.1",
@@ -32,12 +35,22 @@
       "package.json"
     ],
     "win": {
-      "target": ["portable"],
+      "target": ["nsis"],
       "signAndEditExecutable": false,
-      "artifactName": "My-Project-Hub-${version}.${ext}"
+      "artifactName": "My-Project-Hub-Setup-${version}.${ext}"
     },
-    "portable": {
-      "artifactName": "My-Project-Hub-${version}.exe"
-    }
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "My Project Hub"
+    },
+    "publish": [{
+      "provider": "github",
+      "owner": "NguyenHop1909",
+      "repo": "my-project-hub",
+      "releaseType": "release"
+    }]
   }
 }
